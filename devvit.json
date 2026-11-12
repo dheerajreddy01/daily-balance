@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "daily-balance",
+  "post": {
+    "dir": "dist/client",
+    "entrypoints": {
+      "default": {
+        "entry": "splash.html",
+        "height": "tall"
+      },
+      "game": {
+        "entry": "game.html"
+      }
+    }
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.cjs"
+  },
+  "permissions": {
+    "redis": true,
+    "reddit": {
+      "enable": true,
+      "scope": "user",
+      "asUser": [
+        "SUBMIT_COMMENT"
+      ]
+    }
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "Post today’s Daily Balance",
+        "description": "Create the puzzle post for today",
+        "location": "subreddit",
+        "forUserType": "moderator",
+        "endpoint": "/internal/menu/post-create"
+      }
+    ]
+  },
+  "triggers": {
+    "onAppInstall": "/internal/triggers/on-app-install"
+  },
+  "scheduler": {
+    "tasks": {
+      "daily-post": {
+        "endpoint": "/internal/scheduler/daily-post",
+        "cron": "0 0 * * *"
+      }
+    }
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build"
+  },
+  "marketingAssets": {
+    "icon": "assets/icon.png"
+  }
+}
