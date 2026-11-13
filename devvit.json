@@ -55,5 +55,8 @@
   },
   "marketingAssets": {
     "icon": "assets/icon.png"
+  },
+  "dev": {
+    "subreddit": "daily_balance_dev"
   }
 }
